@@ -4,6 +4,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-
+    render action: :new
   end
 end
