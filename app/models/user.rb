@@ -13,4 +13,8 @@ class User < ApplicationRecord
 
     Stripe::Customer.retrieve(stripe_id)
   end
+
+  def subscribed?
+    stripe_subscription_id? || (expires_at? && Time.zone.now < expires_at)
+  end
 end
