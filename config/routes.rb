@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resource :subscription
   resources :products
+  resources :charges
 
   root to: "products#index"
 end
