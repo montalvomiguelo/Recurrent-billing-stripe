@@ -1,6 +1,19 @@
 <h1>Subscribe</h1>
 
-<%= form_tag subscription_path, id: "payment-form" do |form| %>
+<% if current_user.card_last4? %>
+  <%= form_tag subscription_path, id: "existing-card" do |form| %>
+    <p>Pay with existing card:</p>
+    <div><strong>Card on file:</strong> <%= current_user.card_brand %> (**** **** **** <%= current_user.card_last4 %>)</div>
+    <div><strong>Expiration:</strong> <%= current_user.card_exp_month %> / <%= current_user.card_exp_year %></div>
+    <p>or <%= link_to "add a new card", "#", class: "show-card-form" %></p>
+
+    <%= hidden_field_tag :plan, params[:plan] %>
+
+    <button>Submit Payment</button>
+  <% end %>
+<% end %>
+
+<%= form_tag subscription_path, id: "payment-form", style: (current_user.card_last4) ? "display:none" : nil do |form| %>
   <div class="form-row">
     <label for="card-element">
       Credit or debit card

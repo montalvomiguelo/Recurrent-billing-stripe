@@ -59,6 +59,13 @@ document.addEventListener("turbolinks:load", function() {
       }
     });
   });
+
+  $(".show-card-form").on("click", function(e) {
+    e.preventDefault();
+
+    $('#existing-card').hide();
+    $(form).show();
+  });
 });
 
 function stripeTokenHandler(token) {

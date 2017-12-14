@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
         card_last4: params[:user][:cardlast4],
         card_exp_month: params[:user][:cardexp_month],
         card_exp_year: params[:user][:cardexp_year]
-      ) if params[:user][:cardlast4]
+      ) if params[:user] && params[:user][:cardlast4]
 
       current_user.save
 
